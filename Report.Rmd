@@ -1,6 +1,6 @@
 ---
   title: "What Type Of Pokemon Is The Match For You?"
-  output: word_document
+  output: html_document
 ---
 
 ![](assets/dataset-cover.jpg)
@@ -15,7 +15,7 @@ palette <- c("#A6B91A", "#705746", "#6F35FC", "#F7D02C", "#D685AD", "#C22E28", "
 ```
 ##Introduction
 ***
-The dataset I chose for my project was called *"Pokémon for Data Mining and Machine Learning"* which I found on [Kaggle](https://www.kaggle.com/alopez247/pokemon). I originally picked this dataset because it contained many variables, both categorical and quantitative, that I could attempt to correlate in a number of ways. In the end, however, I decided that I would set out to compare the numerous Pokémon types. Pokémon embody one to two "types" which, in part, determine that Pokémon's various stats, the moves it can use, and its appearence. There are currently eighteen types of Pokémon: Bug, Dark, Dragon, Electric, Fairy, Fighting, Fire, Flying, Ghost, Grass, Ground, Ice, Normal, Poison, Psychic, Rock, Steel, and Water.
+The dataset I chose for my project was called *"Pokémon for Data Mining and Machine Learning"* which I found on [Kaggle](https://www.kaggle.com/alopez247/pokemon). I originally picked this dataset because it contained many variables, both categorical and quantitative, that I could attempt to correlate in a number of ways. In the end, however, I decided that I would set out to compare the numerous Pokémon types. Pokémon embody one to two "types" which, in part, determine that Pokémon's various stats, the moves it can use, and its appearance. There are currently eighteen types of Pokémon: Bug, Dark, Dragon, Electric, Fairy, Fighting, Fire, Flying, Ghost, Grass, Ground, Ice, Normal, Poison, Psychic, Rock, Steel, and Water.
 
 In most Pokémon games, the player can only carry 6 Pokémon with him or her at one time, therefore it is always difficult to decide which Pokemon to bring along and which to leave behind; often times this decision is influenced by the Pokémon's type. It is always a good idea to maintain a diverse team of Pokémon and this analysis of the Pokémon types is designed to help players with just that.
 
@@ -27,7 +27,7 @@ pokemelt <- na.omit(melt(legendaries, id.vars = "Name", measure.vars = c("Type_1
 ***
 In the Pokémon universe there are a number of *Legendary Pokémon* that are significantly rarer and more powerful than the average Pokémon. In my data set of `r dim(pokemon)[1]` Pokémon, `r dim(legendaries)[1]` of them are legendary.
 
-In order to deduce which type of Pokémon yields the most legendaries, I created a bar chart comparing the number of legendary Pokémon that belong to each type. Note that the total number of Pokémon shown in this bar graph is `r dim(pokemelt)[1]`, not `r dim(legendaries)[1]` because I am looking at both primary and secondary types. If a legendary is of the types Psychic and Flying, for example, it will be counted once for the Psychic type and once for the Flying type; effectively meaning that all Pokémon with two types are double counted. I chose to do this because I set out to compare what Pokémon you would have avalible should you commit yourself to a particular type. By including secondary types I am changing the overall counts of legendaries but when I comes to the individual types, I am fairly and completely representing all of the pokemon that have that type, even those who only have it secondarily.
+In order to deduce which type of Pokémon yields the most legendaries, I created a bar chart comparing the number of legendary Pokémon that belong to each type. Note that the total number of Pokémon shown in this bar graph is `r dim(pokemelt)[1]`, not `r dim(legendaries)[1]` because I am looking at both primary and secondary types. If a legendary is of the types Psychic and Flying, for example, it will be counted once for the Psychic type and once for the Flying type; effectively meaning that all Pokémon with two types are double counted. I chose to do this because I set out to compare what Pokémon you would have available should you commit yourself to a particular type. By including secondary types I am changing the overall counts of legendaries but when it comes to the individual types, I am fairly and completely representing all of the pokemon that have that type, even those who only have it secondarily.
 
 ```{r fig.width = 10}
 bar <- ggplot(pokemelt, aes(x = value, fill = value))
@@ -37,7 +37,7 @@ bar <- bar + guides(fill = FALSE)
 bar
 ```
 
-From the data we can see that the Psychic type is the most legendary type; followed closely by Dragon, Flying, and Fire. Curiously there are no legendary Pokémon of either the Bug or Poison type. The three Pokémon that have the Fighting type posess it only as a secondary type.
+From the data we can see that the Psychic type is the most legendary type; followed closely by Dragon, Flying, and Fire. Curiously there are no legendary Pokémon of either the Bug or Poison type. The three Pokémon that have the Fighting type possess it only as a secondary type.
 
 If you are seeking prestige of legendary proportions, then the Psychic, Dragon, Flying, and Fire types may be for you. If, on the other hand, you are a fan of the Bug or Poison types, you will have to settle for a team without legendary Pokémon.
 
@@ -111,13 +111,13 @@ Here we can see that the Dragon type is by far the strongest overall type. While
 | Steel | `r min(typeTotal("Steel"))` | `r unname(quantile(typeTotal("Steel"), 0.25))` | `r median(typeTotal("Steel"))` | `r unname(quantile(typeTotal("Steel"), 0.75))` | `r max(typeTotal("Steel"))` | `r round(mean(typeTotal("Steel")))` | `r round(sd(typeTotal("Steel")))` |
 | Water | `r min(typeTotal("Water"))` | `r unname(quantile(typeTotal("Water"), 0.25))` | `r median(typeTotal("Water"))` | `r unname(quantile(typeTotal("Water"), 0.75))` | `r max(typeTotal("Water"))` | `r round(mean(typeTotal("Water")))` | `r round(sd(typeTotal("Water")))` |
 
-But maybe you have a very particular fighting style and a couple stats in particular are important to you. Well fear not! Here are another six boxplots for each of the six seperate Pokémon stats. First up is HP, the stat that determines how much damage your Pokémon can take before falling out of battle.
+But maybe you have a very particular fighting style and a couple stats in particular are important to you. Well fear not! Here are another six boxplots for each of the six separate Pokémon stats. First up is HP, the stat that determines how much damage your Pokémon can take before falling out of battle.
 
 ```{r results = 'hide', fig.width = 10}
 charts[2]
 ```
 
-As far as comparing Pokémon types go, this graph isn't the most facinating. Most of the types are rather similar in terms of HP though it is resonable to say that Ground type Pokémon have somewhat higher HP than normal and Ghost types somewhat lower. The Pokémon with the greatest amount of HP is `r pokemon[order(pokemon$HP, decreasing = TRUE),][1,2]` with `r sort(pokemon$HP, decreasing = TRUE)[1]` HP and the Pokémon with the least amount of HP is `r pokemon[order(pokemon$HP),][1,2]` with `r sort(pokemon$HP)[1]` HP.
+As far as comparing Pokémon types go, this graph isn't the most fascinating. Most of the types are rather similar in terms of HP though it is reasonable to say that Ground type Pokémon have somewhat higher HP than normal and Ghost types somewhat lower. The Pokémon with the greatest amount of HP is `r pokemon[order(pokemon$HP, decreasing = TRUE),][1,2]` with `r sort(pokemon$HP, decreasing = TRUE)[1]` HP and the Pokémon with the least amount of HP is `r pokemon[order(pokemon$HP),][1,2]` with `r sort(pokemon$HP)[1]` HP.
 
 Next up is the Attack stat which determines the amount of physical damage that a Pokémon can deal out. Think Tackle, Scratch, or other moves that involve physical contact.
 
