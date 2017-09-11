@@ -190,4 +190,4 @@ With a dataset this big, there is far more to be explored! I do feel, however, t
 
 Overall, it seems like the Dragon type is the best type. It has a high number of legendary Pokémon associated with it and it comes out on top in the Total stat and is a consistent leader in the other six stats as well. Its only drawback would be its relative rarity at only four percent of all Pokémon.
 
-In the end, however, the choice of Pokémon is far more complicated than just looking a the types. In my analysis I failed to test for the most important Pokémon choosing factor: the cuteness factor. Oh well, perhaps someday statisticians will find a way to quantify "cuteness", but until then, I'll have to stick to my numbers.
+In the end, however, the choice of Pokémon is far more complicated than just looking at the types. In my analysis I failed to test for the most important Pokémon choosing factor: the cuteness factor. Oh well, perhaps someday statisticians will find a way to quantify "cuteness", but until then, I'll have to stick to my numbers.
